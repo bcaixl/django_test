@@ -123,3 +123,11 @@ def sign_index_action(request, eid):
         sign_data = str(len(sign_list))
         return render(request, 'sign_index.html', {"event": event, 'hint': 'sign in success.', 'guest': result,
                                                    'guest_num': guest_data, 'sign_num': sign_data})
+
+
+# 退出登录
+@login_required
+def logout(request):
+    auth.logout(request)
+    response = HttpResponseRedirect("/index/")
+    return response
